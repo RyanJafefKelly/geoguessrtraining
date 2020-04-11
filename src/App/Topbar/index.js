@@ -2,6 +2,10 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core';
+import Burger from '../../components/Burger';
+import Menu from '../../components/Menu';
+import { useOnClickOutside } from '../../utils/useOnClickOutside';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -13,12 +17,13 @@ const useStyles = makeStyles(theme => ({
       }
     },
     toolbar: {
-      color: 'red',
+      color: 'white',
+      background: 'black',
       padding: 0,
       '& > .MuiBox-root': {
         paddingLeft: 10,
         paddingRight: 10,
-        paddingBottom: 20,
+        paddingBottom: 0,
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
@@ -31,19 +36,27 @@ const useStyles = makeStyles(theme => ({
   }));
 
 function Topbar() {
+  const [open, setOpen] = React.useState(false);
     const classes = useStyles();
+    const node = React.useRef(); 
+    useOnClickOutside(node, () => setOpen(false));
     return (
         <Toolbar className={classes.toolbar}>
             <Box>
             <Box ml={1}>
-                <div>Toolbar</div>
+              <div ref={node} >
+                  <Burger open={open} setOpen={setOpen} />
+                  <Menu open={open} setOpen={setOpen} />
+              </div>
+            </Box>
+            <Box ml={1}>
             </Box>
             <Box>
                 <div>more tool.</div>
             </Box>
             <Box>
               <Box mr={1}>
-                  <div>more Toolbar</div>
+                  <div>Profile</div>
               </Box>
             </Box>
           </Box>
