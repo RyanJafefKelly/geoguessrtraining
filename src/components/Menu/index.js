@@ -1,22 +1,22 @@
 // Menu.js
 import React from 'react';
 import { StyledMenu } from './Menu.styled';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';  
+import { useHistory } from 'react-router-dom';
 
 const Menu = ({open}) => {
+  const history = useHistory();
   return (
     <StyledMenu open={open}>
-      <a href="/">
-        <span role="img" aria-label="about us">&#x1f481;&#x1f3fb;&#x200d;&#x2642;&#xfe0f;</span>
-        About us
-      </a>
-      <a href="/">
-        <span role="img" aria-label="price">&#x1f4b8;</span>
-        Pricing
-        </a>
-      <a href="/">
-        <span role="img" aria-label="contact">&#x1f4e9;</span>
-        Contact
-        </a>
+
+      {/* roads ... left vs right, miles vs km, road pics */} 
+      {/* Australia */}
+      <Typography>
+        <Link onClick={() => history.push('/roads')}>
+          Roads
+        </Link>
+      </Typography>
     </StyledMenu>
   )
 }
