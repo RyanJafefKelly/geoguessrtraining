@@ -12,7 +12,12 @@ const loading = () => <div>loading...</div>
 const Login = React.lazy(() => import('../pages/Login'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Roads = React.lazy(() => import('../pages/Roads'));
-
+const Basics = React.lazy(() => import('../pages/Basics'));
+const Signs = React.lazy(() => import('../pages/Signs'));
+const LicensePlates = React.lazy(() => import('../pages/LicensePlates'));
+const Languages = React.lazy(() => import('../pages/Languages'));
+const RegionalDifferences = React.lazy(() => import('../pages/RegionalDifferences'));
+const Miscellaneous = React.lazy(() => import('../pages/Miscellaneous'));
 
 function App() {
   return (
@@ -27,8 +32,13 @@ function App() {
               <Switch>
               <Route exact path="/dashboard"  name="Dashboard" component={Dashboard} />
               <Route exact path="/" name="Login" component={Login} />
+              <Route exact path="/basics" name="Basics" component={Basics} />
               <Route exact path="/roads" name="Roads" component={Roads} />
-
+              <Route exact path="/signs" name="Signs" component={Signs} />
+              <Route exact path="/license-plates" name="License Plates" component={LicensePlates} />
+              <Route exact path="/languages" name="Languages" component={Languages} />
+              <Route exact path="/regional-differences" name="Regional Difference" component={RegionalDifferences} />
+              <Route exact path="/miscellaneous" name="Miscellaneous" component={Miscellaneous} />
               </Switch>
             </Container>
         </React.Suspense>
