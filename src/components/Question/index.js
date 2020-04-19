@@ -1,8 +1,11 @@
 import React from "react";
 
-const Question = () => {
+//inputs
+// question text, imageUrl
+
+const Question = ({ questionText, imageUrl }) => {
     return(
-        <div>Question</div>
+        <div>{questionText}</div>
     );
 }
 

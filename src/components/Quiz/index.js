@@ -1,8 +1,14 @@
 import React from "react";
+import QuizStepper from './QuizStepper';
 
-const Quiz = () => {
+//Stepper
+//Multiple questions
+const Quiz = ({ questions }) => {
     return(
-        <div>in progress</div>
+        <React.Fragment>
+            <QuizStepper questions={questions}/>
+            <div style={{ color: 'black' }} > test </div>
+        </React.Fragment>
     );
 }
 
