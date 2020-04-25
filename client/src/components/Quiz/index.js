@@ -6,7 +6,7 @@ import QuizStepper from './QuizStepper';
 const Quiz = ({ questions }) => {
     return(
         <React.Fragment>
-            <QuizStepper questions={questions}/>
+            <QuizStepper questions={questions} />
             <div style={{ color: 'black' }} > test </div>
         </React.Fragment>
     );

@@ -18,8 +18,10 @@ const LicensePlates = React.lazy(() => import('../pages/LicensePlates'));
 const Languages = React.lazy(() => import('../pages/Languages'));
 const RegionalDifferences = React.lazy(() => import('../pages/RegionalDifferences'));
 const Miscellaneous = React.lazy(() => import('../pages/Miscellaneous'));
+const Profile = React.lazy(() => import ('../pages/Profile'));
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -32,8 +34,10 @@ function App() {
               <Switch>
               <Route exact path="/dashboard"  name="Dashboard" component={Dashboard} />
               <Route exact path="/" name="Login" component={Login} />
+              <Route exact path="/profile" name="Profile" component={Profile} />
               <Route exact path="/basics" name="Basics" component={Basics} />
               <Route exact path="/roads" name="Roads" component={Roads} />
+              {/* <Route exact path="/roads" name="Roads" component={Roads} /> */}
               <Route exact path="/signs" name="Signs" component={Signs} />
               <Route exact path="/license-plates" name="License Plates" component={LicensePlates} />
               <Route exact path="/languages" name="Languages" component={Languages} />

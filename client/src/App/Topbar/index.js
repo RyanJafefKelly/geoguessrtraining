@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import Burger from '../../components/Burger';
 import Menu from '../../components/Menu';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
-
+import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,6 +39,7 @@ function Topbar() {
   const [open, setOpen] = React.useState(false);
     const classes = useStyles();
     const node = React.useRef(); 
+    const history = useHistory();
     useOnClickOutside(node, () => setOpen(false));
     return (
         <Toolbar className={classes.toolbar}>
@@ -56,7 +57,7 @@ function Topbar() {
             </Box>
             <Box>
               <Box mr={1}>
-                  <div>Profile</div>
+                  <Link onClick={() => history.push('/profile')}>Profile</Link>
               </Box>
             </Box>
           </Box>
