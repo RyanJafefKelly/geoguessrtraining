@@ -62,7 +62,7 @@ export default function Profile() {
                 }}
                 > 
                 <Fade in={modal}>
-                    <div className={classes.paper}>
+                    <div className={classes.paper}> 
                     <QuizForm />
                     </div>
                 </Fade>
