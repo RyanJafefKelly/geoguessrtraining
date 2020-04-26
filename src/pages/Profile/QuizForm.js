@@ -25,9 +25,11 @@ export default function QuizForm() {
     return (
         <React.Fragment>
             <div>
-            <h1>My Form</h1>
+            <Typography>Add Quiz</Typography>
+            
             <Formik
-                initialValues={{questionText0: '', imageUrl0: '', correctAnswer0: '', 
+                initialValues={{quizTitle: '', quizCategory: '', 
+                questionText0: '', imageUrl0: '', correctAnswer0: '', 
                 questionText1: '', imageUrl1: '', correctAnswer1: '',
                 questionText2: '', imageUrl2: '', correctAnswer2: '',
                 questionText3: '', imageUrl3: '', correctAnswer3: '',
@@ -41,6 +43,17 @@ export default function QuizForm() {
             >
                 { props => (
                 <React.Fragment>
+                    <Field type="text" name="quizTitle" placeholder="Title" />
+            <Field as="select" name="quizCategory" placeholder="Title">
+                <option value="basics">Basics</option>
+                <option value="roads">Roads</option>
+                <option value="signs">Signs</option>
+                <option value="licensePlates">License Plates</option>
+                <option value="languages">Languages</option>
+                <option value="regionalDifferences">Regional Differences</option>
+                <option value="miscellaneous">Miscellaneous</option>
+
+            </Field>
                 <form onSubmit={props.handleSubmit}>
                     {Array(numQuestions).fill().map((num, index) => {
                         return <div>Question: {index + 1} <FormFields index={index} /></div>

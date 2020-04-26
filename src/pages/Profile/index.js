@@ -6,6 +6,9 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+// import mongoose from 'mongoose'
+// import db from '../../lambda/server';
+ 
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -68,6 +71,8 @@ export default function Profile() {
                 </Fade>
             </Modal>
             <Button color="primary" onClick={toggle}>Add Quiz</Button>     
+            <div>Quiz List</div>
+
         </div>
     )
 }
