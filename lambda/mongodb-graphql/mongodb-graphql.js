@@ -5,7 +5,6 @@ const connectToMongoDB = require("./db");
 require('encoding');
 const URI = process.env.DB_URI;
 
-
 exports.handler = async function(event, context) {
   console.log(URI);
   const db = await connectToMongoDB();

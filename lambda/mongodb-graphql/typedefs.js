@@ -3,9 +3,13 @@ require('encoding');
 
 module.exports = gql`
   type Query {
-    getQuiz(id: ID!): Quiz
-    getQuestion(id: ID!): Question
+    hello: String
   }
+
+  # type Query {
+  #   getQuiz(id: ID!): Quiz
+  #   getQuestion(id: ID!): Question
+  # }
   type Quiz {
     id: ID!
     name: String
