@@ -11,6 +11,12 @@ exports.handler = async function(event, context) {
   const server = new ApolloServer({
     typeDefs,
     resolvers: resolvers(db),
+    context: ({ event, context }) => ({
+      headers: event.headers,
+      functionName: context.functionName,
+      event,
+      context,
+    }),
     playground: {
       endpoint: "/dev/graphql"
     }
