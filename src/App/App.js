@@ -10,9 +10,7 @@ import { gql } from "apollo-boost";
 import { ApolloProvider, Query } from "react-apollo";// Replace the previous LambdaDemo with the code below:
 
 const client = new ApolloClient({
-  uri: process.env.NODE_ENV === 'development'
-  ? 'http://localhost:9000/.netlify/functions/graphql'
-  : '/.netlify/functions/graphql'
+  uri: '/.netlify/functions/mongodb-graphql'
 });
 // const LambdaDemo = () => (
 //   <ApolloProvider client={client}>
@@ -43,7 +41,7 @@ const Miscellaneous = React.lazy(() => import('../pages/Miscellaneous'));
 const Profile = React.lazy(() => import ('../pages/Profile'));
 
 function App() {
-  
+    console.log(client);
   return (
     <ApolloProvider client={client}>
         <Query

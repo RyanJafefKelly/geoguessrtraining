@@ -10,9 +10,7 @@ exports.handler = async function(event, context) {
   const db = await connectToMongoDB();
   const server = new ApolloServer({
     typeDefs,
-    resolvers: resolvers(db),  
-    introspection: true,
-    playground: true,
+    resolvers: resolvers(db)
   });
   return new Promise((yay, nay) => {
     const cb = (err, args) => (err ? nay(err) : yay(args));
