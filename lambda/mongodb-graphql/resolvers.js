@@ -2,7 +2,7 @@ require('encoding');
 
 module.exports = db => ({
   Query: {
-    hello: (root, args, context) => {
+    hello: () => {
       return "Hello, world!";
     }
   }
