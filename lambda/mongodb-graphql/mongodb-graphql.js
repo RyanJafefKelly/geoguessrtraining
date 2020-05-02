@@ -10,10 +10,14 @@ exports.handler = async function(event, context) {
   const db = await connectToMongoDB();
   const server = new ApolloServer({
     typeDefs,
-    resolvers: resolvers(db)
+    resolvers: resolvers(db),
+    playground: {
+      endpoint: "/dev/graphql"
+    }
   });
-  return new Promise((yay, nay) => {
-    const cb = (err, args) => (err ? nay(err) : yay(args));
-    server.createHandler()(event, context, cb);
-  });
+  return server.createHandler();
+  // return new Promise((yay, nay) => {
+  //   const cb = (err, args) => (err ? nay(err) : yay(args));
+  //   server.createHandler()(event, context, cb);
+  // });
 };
