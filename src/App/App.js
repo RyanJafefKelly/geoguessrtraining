@@ -47,12 +47,12 @@ function App() {
         <Query
           query={gql`
             {
-              allTodos
+              hello
             }
           `}
         >
           {({ data }) =>
-            <div>A greeting from the server: {data?.allTodos}</div>}
+            <div>A greeting from the server: {data?.hello}</div>}
         </Query>
       </ApolloProvider>
     // <ThemeProvider theme={theme}>
