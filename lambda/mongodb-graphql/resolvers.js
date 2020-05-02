@@ -17,7 +17,7 @@ module.exports = db => ({
   //     var result = await Question.findById(id);
   //     return result;
   // }
-  }, Mutation: {
+  , Mutation: {
     addQuiz: () => {},
     addQuestion: () => {}
   }
