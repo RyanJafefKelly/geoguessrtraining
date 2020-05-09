@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { gql, ApolloClient } from "apollo-boost";
+import React, { Component } from "react";
+import ApolloClient, { gql } from "apollo-boost";
 import { ApolloProvider, Query } from "react-apollo";// Replace the previous LambdaDemo with the code below:
 
 const client = new ApolloClient({
@@ -16,7 +16,7 @@ const LambdaDemo = () => (
       `}
     >
       {({ data }) =>
-        <div>A greeting from the server: {data.hello}</div>}
+        <div>A greeting from the server: {data?.hello}</div>}
     </Query>
   </ApolloProvider>
 );
