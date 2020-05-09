@@ -1,87 +1,50 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
-import Topbar from './Topbar';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from '../global';
-import { theme } from '../theme';
-import ApolloClient from "apollo-boost";
-import { gql } from "apollo-boost";
-import { ApolloProvider, Query } from "react-apollo";// Replace the previous LambdaDemo with the code below:
+import React, { Component } from "react"
+// import logo from "./logo.svg"
+// import "./App.css"
 
-const client = new ApolloClient({
-  uri: '/.netlify/functions/mongodb-graphql'
-});
-// const LambdaDemo = () => (
-//   <ApolloProvider client={client}>
-//     <Query
-//       query={gql`
-//         {
-//           hello
-//         }
-//       `}
-//     >
-//       {({ data }) =>
-//         <div>A greeting from the server: {data.hello}</div>}
-//     </Query>
-//   </ApolloProvider>
-// );
-const loading = () => <div>loading...</div>
+class LambdaDemo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: false, msg: null }
+  }
 
-//pages
-const Login = React.lazy(() => import('../pages/Login'));
-const Dashboard = React.lazy(() => import('../pages/Dashboard'));
-const Roads = React.lazy(() => import('../pages/Roads'));
-const Basics = React.lazy(() => import('../pages/Basics'));
-const Signs = React.lazy(() => import('../pages/Signs'));
-const LicensePlates = React.lazy(() => import('../pages/LicensePlates'));
-const Languages = React.lazy(() => import('../pages/Languages'));
-const RegionalDifferences = React.lazy(() => import('../pages/RegionalDifferences'));
-const Miscellaneous = React.lazy(() => import('../pages/Miscellaneous'));
-const Profile = React.lazy(() => import ('../pages/Profile'));
+  handleClick = api => e => {
+    e.preventDefault()
 
-function App() {
-    console.log(client);
-  return (
-    <ApolloProvider client={client}>
-        <Query
-          query={gql`
-            {
-              hello
-            }
-          `}
-        >
-          {({ data }) => 
-            <div>A greeting from the servder: {data?.hello}</div>}
-        </Query>
-      </ApolloProvider>
-    // <ThemeProvider theme={theme}>
-    //   <>
-    //     <GlobalStyles />
-        
-    //   <Router>
-    //   <Topbar />
-    //     <React.Suspense fallback={loading()}>
-    //         <Container>
-    //           <Switch>
-    //           <Route exact path="/dashboard"  name="Dashboard" component={Dashboard} />
-    //           <Route exact path="/" name="Login" component={Login} />
-    //           <Route exact path="/profile" name="Profile" component={Profile} />
-    //           <Route exact path="/basics" name="Basics" component={Basics} />
-    //           <Route exact path="/roads" name="Roads" component={Roads} />
-    //           {/* <Route exact path="/roads" name="Roads" component={Roads} /> */}
-    //           <Route exact path="/signs" name="Signs" component={Signs} />
-    //           <Route exact path="/license-plates" name="License Plates" component={LicensePlates} />
-    //           <Route exact path="/languages" name="Languages" component={Languages} />
-    //           <Route exact path="/regional-differences" name="Regional Difference" component={RegionalDifferences} />
-    //           <Route exact path="/miscellaneous" name="Miscellaneous" component={Miscellaneous} />
-    //           </Switch>
-    //         </Container>
-    //     </React.Suspense>
-    //   </Router>
-    //   </>
-    // </ThemeProvider>
-  );
+    this.setState({ loading: true })
+    fetch("/.netlify/functions/" + api)
+      .then(response => response.json())
+      .then(json => this.setState({ loading: false, msg: json.msg }))
+  }
+
+  render() {
+    const { loading, msg } = this.state
+
+    return (
+      <p>
+        <button onClick={this.handleClick("hello")}>{loading ? "Loading..." : "Call Lambda"}</button>
+        <button onClick={this.handleClick("async-dadjoke")}>{loading ? "Loading..." : "Call Async Lambda"}</button>
+        <br />
+        <span>{msg}</span>
+      </p>
+    )
+  }
 }
 
-export default App;
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <LambdaDemo />
+        </header>
+      </div>
+    )
+  }
+}
+
+export default App
